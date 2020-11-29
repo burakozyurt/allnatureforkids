@@ -36,6 +36,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               color: Colors.transparent,
               child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
