@@ -1,9 +1,11 @@
 import 'package:allnatureforkids/locator.dart';
 import 'package:allnatureforkids/main_model.dart';
 import 'package:allnatureforkids/main_repository.dart';
-import 'package:allnatureforkids/pages/home_page.dart';
+import 'package:allnatureforkids/pages/home_page_items/home_page_manage_model.dart';
+import 'file:///C:/dev/allnatureforkids/allnatureforkids/lib/pages/home_page_items/home_page.dart';
 import 'package:allnatureforkids/sound_manager/sound_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/screenutil.dart';
 import 'package:provider/provider.dart';
@@ -23,21 +25,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
-
+  HomePageManageModel homePageManageModel;
   final _soundManager = getIt.get<SoundManager>();
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    homePageManageModel = HomePageManageModel();
+    SystemChrome.setEnabledSystemUIOverlays([]);
     WidgetsBinding.instance.addObserver(this);
-    _soundManager.playBackground();
+    //_soundManager.playBackground();
   }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    //_soundManager.stopBackground();
+//_soundManager.stopBackground();
     WidgetsBinding.instance.removeObserver(this);
   }
 
@@ -48,28 +52,28 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
     switch (state) {
       case AppLifecycleState.resumed:
-        print('RESUMED');
+       // print('RESUMED');
         _soundManager.resumeBackground();
 
         // widget is resumed
         //_soundManager.playBackground();
         break;
       case AppLifecycleState.inactive:
-        print('INACTIVE');
+        //print('INACTIVE');
         _soundManager.pauseBackground();
 
 // widget is inactive
         //_soundManager.stopBackground();
         break;
       case AppLifecycleState.paused:
-        print('PAUSED');
+       // print('PAUSED');
         _soundManager.stopBackground();
 
 // widget is paused
         //_soundManager.stopBackground();
         break;
       case AppLifecycleState.detached:
-        print('DETACHED');
+       // print('DETACHED');
 
 // widget is detached
         break;
@@ -94,7 +98,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               Locale('tr','TR'),
               Locale('en','EN'),
             ],
-
             locale:data.preferredLanguageCode==null ? null: Locale(data.preferredLanguageCode,data.preferredLanguageCode.toUpperCase()),
             localizationsDelegates: [
               AppLocalizations.delegate,
@@ -110,7 +113,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               return supportedLocales.first;
             },
 
-            home: HomePage(),
+            home: ChangeNotifierProvider.value(value:homePageManageModel,child: HomePage()),
           );
         }
       ),
