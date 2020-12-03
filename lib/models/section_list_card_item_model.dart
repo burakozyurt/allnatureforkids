@@ -7,6 +7,20 @@ class SectionListCardModel extends ChangeNotifier{
   String _sectionName;
   String _sectionCoverPhotoPath;
   String _sectionIdName;
+  final bool isLocked;
+
+  bool _isLongPressTimerOpen = false;
+
+
+  bool get isLongPressTimerOpen => _isLongPressTimerOpen;
+
+  set isLongPressTimerOpen(bool value) {
+    _isLongPressTimerOpen = value;
+    notifyListeners();
+  }
+
+
+
 
   double _scale = 1.0;
 
@@ -43,7 +57,7 @@ class SectionListCardModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  SectionListCardModel(this._sectionName, this._sectionCoverPhotoPath, this._sectionIdName);
+  SectionListCardModel(this._sectionName, this._sectionCoverPhotoPath, this._sectionIdName,{this.isLocked = false});
 
   String get sectionName => _sectionName;
 

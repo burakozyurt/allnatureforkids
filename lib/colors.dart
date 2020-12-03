@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class ThemeColor{
-  static final Color anaRenk1 = Color(0xFFCA9E67);
+  static final Color anaRenk1 = Color(0xFF612D90);
   static final Color anaRenk2  = Color(0xFF07424F);
   static final Color yaziAra  = Color(0xFF3280C2);
   static final Color araRenk3  = Color(0xFF7A818F);

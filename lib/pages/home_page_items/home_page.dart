@@ -51,8 +51,9 @@ class _HomePageState extends State<HomePage> {
               child: SingleChildScrollView(
                 controller: controller,
                 physics: BouncingScrollPhysics(),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: ListView(
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   children: [
                     SizedBox(
                       height: ScreenUtil().setHeight(32),
@@ -71,15 +72,15 @@ class _HomePageState extends State<HomePage> {
                         child: SectionListCardWidget()),
                     ChangeNotifierProvider.value(
                         value: SectionListCardModel(
-                            AppLocalizations.of(context).translate('mushrooms'), '', 'mushrooms'),
+                            AppLocalizations.of(context).translate('mushrooms'), '', 'mushrooms',isLocked: true),
                         child: SectionListCardWidget()),
                     ChangeNotifierProvider.value(
                         value: SectionListCardModel(
-                            AppLocalizations.of(context).translate('fruits'), '', 'fruits'),
+                            AppLocalizations.of(context).translate('fruits'), '', 'fruits',isLocked: true),
                         child: SectionListCardWidget()),
                     ChangeNotifierProvider.value(
                         value: SectionListCardModel(
-                            AppLocalizations.of(context).translate('vegetables'), '', 'vegetables'),
+                            AppLocalizations.of(context).translate('vegetables'), '', 'vegetables',isLocked: true),
                         child: SectionListCardWidget()),
                     SizedBox(
                       height: ScreenUtil().setHeight(48),

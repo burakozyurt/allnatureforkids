@@ -34,7 +34,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     homePageManageModel = HomePageManageModel();
     SystemChrome.setEnabledSystemUIOverlays([]);
     WidgetsBinding.instance.addObserver(this);
-    //_soundManager.playBackground();
+    _soundManager.playBackground();
   }
 
   @override
@@ -113,7 +113,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               return supportedLocales.first;
             },
 
-            home: ChangeNotifierProvider.value(value:homePageManageModel,child: HomePage()),
+            home: ChangeNotifierProvider.value(value:homePageManageModel,child: new HomePage()),
           );
         }
       ),
