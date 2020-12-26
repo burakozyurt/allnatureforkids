@@ -1,0 +1,22 @@
+[
+    {
+      "name":"pear",
+      "isLocal":true,
+      "photo":"assets/sections/fruits/images/pear.jpg",
+      "audio":"sections/fruits/",
+      "languageName":{
+        "tr": "Armut",
+        "en": "Pear"
+      }
+    },
+    {
+      "name":"apple",
+      "isLocal":true,
+      "photo":"assets/sections/fruits/images/apple.jpg",
+      "audio":"sections/fruits/",
+      "languageName":{
+        "tr": "Elma",
+        "en": "Apple"
+      }
+    }
+]

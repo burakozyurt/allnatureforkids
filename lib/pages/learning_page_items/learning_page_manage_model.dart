@@ -59,7 +59,7 @@ class LearningPageManageModel extends ChangeNotifier{
     notifyListeners();
   }
 
-  bool _isAnimationEnabled;
+  bool _isAnimationEnabled = false;
 
 
   bool get isAnimationEnabled => _isAnimationEnabled;

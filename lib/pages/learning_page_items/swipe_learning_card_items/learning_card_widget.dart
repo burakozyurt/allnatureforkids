@@ -30,16 +30,20 @@ class LearningCardWidget extends StatelessWidget {
         learningPageManageModel.currentIndex = index;
 
         if(index != 0){
+          learningPageManageModel.isAnimationEnabled = true;
           learningPageManageModel.playSound(sectionDataModelList.toList().reversed.toList()[index], AppLocalizations.of(context).locale.languageCode);
           await playScaleAnimation();
+          learningPageManageModel.isAnimationEnabled = false;
         }
 
       },
       onRewind: (int index, SwiperPosition position) async {
 
         learningPageManageModel.currentIndex--;
+        learningPageManageModel.isAnimationEnabled = true;
         learningPageManageModel.playSound(sectionDataModelList.toList().reversed.toList()[learningPageManageModel.currentIndex], AppLocalizations.of(context).locale.languageCode);
         await playScaleAnimation();
+        learningPageManageModel.isAnimationEnabled = false;
 
       },
       children: sectionDataModelList.map((SectionDataModel sectionDataModel) {
@@ -52,7 +56,7 @@ class LearningCardWidget extends StatelessWidget {
                 index = sectionDataModelList.length-1;
               }
               if(sectionDataModel.name != sectionDataModelList.toList().reversed.toList()[index].name){
-                value =1;
+                value = 1;
               }
               return Transform.scale(
                 scale: value,
@@ -81,69 +85,83 @@ class LearningCardWidget extends StatelessWidget {
                       child: Material(
                           elevation: 4,
                           borderRadius: BorderRadius.all(Radius.circular(24)),
-                          child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.all(Radius.circular(24)),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: <Widget>[
-                                  Expanded(
-                                    flex: 3,
-                                    child: Stack(
+                          child: GestureDetector(
+                            onTap: () async {
+                              if(!data.isAnimationEnabled){
+                                data.isAnimationEnabled = true;
+                                learningPageManageModel.playSound(sectionDataModelList.toList().reversed.toList()[data.currentIndex], AppLocalizations.of(context).locale.languageCode);
+                                await playScaleAnimation();
+                                data.isAnimationEnabled = false;
+
+                              }
+
+                            },
+                            child: Container(
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.all(Radius.circular(24)),
+                                ),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                      flex: 3,
+                                      child: Stack(
+                                        children: [
+                                          Center(
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(8.0),
+                                              child: Image(
+                                                image: AssetImage(
+                                                    sectionDataModel.photo),
+                                                fit: BoxFit.cover,
+                                                filterQuality: FilterQuality.low,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Stack(
                                       children: [
-                                        Center(
+                                        Image(
+                                          image: AssetImage(
+                                              'assets/environment/learning_items/waves.png'),
+                                          fit: BoxFit.cover,
+                                          filterQuality: FilterQuality.low,
+
+                                        ),
+                                        Positioned(
+                                          bottom: 0,
+                                          left: 0,
+                                          right: 0,
                                           child: Padding(
-                                            padding: const EdgeInsets.all(8.0),
-                                            child: Image(
-                                              image: AssetImage(
-                                                  sectionDataModel.photo),
-                                              fit: BoxFit.cover,
-                                              filterQuality: FilterQuality.low,
+                                            padding: const EdgeInsets.only(left: 24.0, right: 16,bottom: 4),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.start,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                Text(
+                                                  sectionDataModel.languageName.toJson()[AppLocalizations.of(context).locale.languageCode],
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: ThemeColor.yaziAra,
+                                                    fontSize: ScreenUtil().setSp(
+                                                      24,
+                                                    ),
+                                                  ),
+
+                                                ),
+                                              ],
                                             ),
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  Stack(
-                                    children: [
-                                      Image(
-                                        image: AssetImage(
-                                            'assets/environment/learning_items/waves.png'),
-                                        fit: BoxFit.cover,
-                                        filterQuality: FilterQuality.low,
 
-                                      ),
-                                      Positioned(
-                                        bottom: 0,
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left: 24.0, right: 16,bottom: 4),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.start,
-                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                            children: [
-                                              Text(
-                                                sectionDataModel.languageName.toJson()[AppLocalizations.of(context).locale.languageCode],
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: ThemeColor.yaziAra,
-                                                  fontSize: ScreenUtil().setSp(
-                                                    24,
-                                                  ),
-                                                ),
-
-                                              ),
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-
-                                ],
-                              ))),
+                                  ],
+                                )),
+                          )),
                     ),
                   ],
                 ),
@@ -157,24 +175,40 @@ class LearningCardWidget extends StatelessWidget {
 
   playScaleAnimation()async{
     await Future.delayed(Duration(milliseconds: 200));
-    learningPageManageModel.imageScale = 1.02;
-    await Future.delayed(Duration(milliseconds: 25));
-    learningPageManageModel.imageScale = 1.03;
-    await Future.delayed(Duration(milliseconds: 25));
-    learningPageManageModel.imageScale = 1.04;
-    await Future.delayed(Duration(milliseconds: 25));
-    learningPageManageModel.imageScale = 1.05;
-    await Future.delayed(Duration(milliseconds: 200));
-    learningPageManageModel.imageScale = 1.05;
-    await Future.delayed(Duration(milliseconds: 25));
-    learningPageManageModel.imageScale = 1.04;
-    await Future.delayed(Duration(milliseconds: 25));
-    learningPageManageModel.imageScale = 1.03;
-    await Future.delayed(Duration(milliseconds: 25));
-    learningPageManageModel.imageScale = 1.02;
-    await Future.delayed(Duration(milliseconds: 25));
     learningPageManageModel.imageScale = 1.01;
-    await Future.delayed(Duration(milliseconds: 25));
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.015;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.02;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.025;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.030;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.035;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.040;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.045;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.050;
+    await Future.delayed(Duration(milliseconds: 100));
+    learningPageManageModel.imageScale = 1.045;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.04;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.035;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.03;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.025;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.02;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.015;
+    await Future.delayed(Duration(milliseconds: 10));
+    learningPageManageModel.imageScale = 1.01;
+    await Future.delayed(Duration(milliseconds: 10));
     learningPageManageModel.imageScale = 1;
     return;
   }
