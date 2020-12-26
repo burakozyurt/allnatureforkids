@@ -36,6 +36,8 @@ dependencies:
   flutter_secure_storage: 3.3.2
   flutter_screenutil: ^3.2.0
   audioplayers: ^0.17.0
+  swipe_stack: ^1.0.0
+  rxdart: ^0.25.0
 
   http: ^0.12.2
 
@@ -58,6 +60,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/environment/background/
+    - assets/environment/learning_items/
     - assets/environment/section_backgrounds/
     - assets/environment/sections_sounds/
     - assets/environment/sound_effect/
@@ -70,6 +73,7 @@ flutter:
     - assets/sections/mushrooms/en/names/
     - assets/sections/seasons/en/names/
     - assets/sections/vegetables/en/names/
+    - assets/sections_data/
     - lang/tr.json
     - lang/en.json
   # assets:

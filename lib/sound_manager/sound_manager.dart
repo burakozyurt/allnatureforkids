@@ -7,12 +7,16 @@ class SoundManager{
   static final playerBackground = AudioCache();
   static AudioPlayer playerAudioBackground = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
 
+  static final itemPlayerBackground = AudioCache();
 
+  static AudioPlayer itemPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
 
-  playLocal(String path) async {
+  playItemLocal(String path) async {
     //int result = await audioPlayer.play(localPath, isLocal: true);
-
-    player.play(path);
+    await Future.delayed(Duration(milliseconds: 500));
+    itemPlayer.stop();
+    itemPlayerBackground.load(path);
+    itemPlayer = await itemPlayerBackground.play(path,volume: 0.8,);
   }
 
   playTap()async{

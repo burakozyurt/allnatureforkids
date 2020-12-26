@@ -1,7 +1,9 @@
 import 'package:allnatureforkids/locator.dart';
 import 'package:allnatureforkids/main_model.dart';
 import 'package:allnatureforkids/main_repository.dart';
+import 'package:allnatureforkids/models/section_data_model.dart';
 import 'package:allnatureforkids/pages/home_page_items/home_page_manage_model.dart';
+import 'package:allnatureforkids/pages/learning_page_items/learning_page_repository.dart';
 import 'file:///C:/dev/allnatureforkids/allnatureforkids/lib/pages/home_page_items/home_page.dart';
 import 'package:allnatureforkids/sound_manager/sound_manager.dart';
 import 'package:flutter/material.dart';
@@ -17,6 +19,7 @@ void main() {
   setupLocators();
 
   runApp(MyApp());
+
 }
 
 class MyApp extends StatefulWidget {
