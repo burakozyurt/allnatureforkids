@@ -11,6 +11,11 @@ class SoundManager{
 
   static AudioPlayer itemPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
 
+  stopItemLocal(){
+    itemPlayer.stop();
+
+  }
+
   playItemLocal(String path) async {
     //int result = await audioPlayer.play(localPath, isLocal: true);
     await Future.delayed(Duration(milliseconds: 500));

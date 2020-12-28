@@ -18,6 +18,14 @@ class LearningPageBloc extends Bloc{
     }
   }
 
+  shuffleSectionDataList()async{
+    List<SectionDataModel> sectionDataModelList = await _sectionDataListFetcher.first;
+    sectionDataModelList.shuffle();
+    if(!_sectionDataListFetcher.isClosed){
+      _sectionDataListFetcher.sink.add(sectionDataModelList);
+    }
+  }
+
   @override
   void dispose() {
     // TODO: implement dispose

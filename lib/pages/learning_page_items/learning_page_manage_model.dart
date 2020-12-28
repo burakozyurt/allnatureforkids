@@ -6,6 +6,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:swipe_stack/swipe_stack.dart';
 
 class LearningPageManageModel extends ChangeNotifier{
+  double _startQuizScale = 1.0;
+
+  double get startQuizScale => _startQuizScale;
+
+  set startQuizScale(double value) {
+    _startQuizScale = value;
+    notifyListeners();
+  }
+
   double _leftScale = 1.0;
 
   double get leftScale => _leftScale;
@@ -73,6 +82,7 @@ class LearningPageManageModel extends ChangeNotifier{
     leftScale = 1;
     shuffleScale = 1;
     rightScale = 1;
+    currentIndex = 0;
   }
   pressDetailsLeft(String pressInfo)async{
     //print(pressInfo);
@@ -137,6 +147,27 @@ class LearningPageManageModel extends ChangeNotifier{
     }
     notifyListeners();
   }
+  pressDetailsStartQuiz(String pressInfo)async{
+    //print(pressInfo);
+    if(pressInfo == 'DOWN'){
+      _startQuizScale = 0.95;
+      getIt.get<SoundManager>().playTap();
+      notifyListeners();
+
+    }else if(pressInfo == 'UP'){
+      await Future.delayed(Duration(milliseconds: 50));
+      _startQuizScale = 1;
+    }else if(pressInfo == 'LP_START'){
+      _startQuizScale = 0.95;
+      //getIt.get<SoundManager>().playSectionName(sectionIdName);
+
+    }else if(pressInfo == 'LP_END'){
+      _startQuizScale = 1;
+    }else if(pressInfo == 'CANCEL'){
+      _startQuizScale = 1;
+    }
+    notifyListeners();
+  }
   pressDetails(String pressInfo)async{
     //print(pressInfo);
     if(pressInfo == 'DOWN'){
@@ -161,5 +192,8 @@ class LearningPageManageModel extends ChangeNotifier{
 
   playSound(SectionDataModel sectionDataModel,String languageCode){
     SoundManager().playItemLocal(sectionDataModel.audio+languageCode+'/names/${sectionDataModel.name}.wav');
+  }
+  stopSound(){
+    SoundManager().stopItemLocal();
   }
 }

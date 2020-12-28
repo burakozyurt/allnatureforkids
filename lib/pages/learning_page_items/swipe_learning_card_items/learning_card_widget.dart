@@ -17,33 +17,43 @@ class LearningCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     learningPageManageModel = Provider.of<LearningPageManageModel>(context,listen: false);
+    firstPlay(context);
     return SwipeStack(
       key: swipeKey,
-      stackFrom: StackFrom.Left,
-      translationInterval: 8,
+      stackFrom: StackFrom.Right,
+      translationInterval: 4,
       scaleInterval: 0.04,
+      visibleCount: sectionDataModelList.length,
       historyCount: sectionDataModelList.length,
       onEnd: () {
         learningPageManageModel.currentIndex = sectionDataModelList.length;
       },
       onSwipe: (int index, SwiperPosition position) async {
-        learningPageManageModel.currentIndex = index;
+      //  print((index.toString() + '\n')*5);
+        learningPageManageModel.currentIndex++;
 
-        if(index != 0){
+        if(index != 0 && !learningPageManageModel.isAnimationEnabled){
           learningPageManageModel.isAnimationEnabled = true;
-          learningPageManageModel.playSound(sectionDataModelList.toList().reversed.toList()[index], AppLocalizations.of(context).locale.languageCode);
+          learningPageManageModel.playSound(sectionDataModelList.toList().reversed.toList()[learningPageManageModel.currentIndex], AppLocalizations.of(context).locale.languageCode);
           await playScaleAnimation();
           learningPageManageModel.isAnimationEnabled = false;
+        }else{
+          learningPageManageModel.stopSound();
         }
 
       },
       onRewind: (int index, SwiperPosition position) async {
+        //print((index.toString() + '\n')*5);
 
         learningPageManageModel.currentIndex--;
-        learningPageManageModel.isAnimationEnabled = true;
-        learningPageManageModel.playSound(sectionDataModelList.toList().reversed.toList()[learningPageManageModel.currentIndex], AppLocalizations.of(context).locale.languageCode);
-        await playScaleAnimation();
-        learningPageManageModel.isAnimationEnabled = false;
+        if(!learningPageManageModel.isAnimationEnabled){
+          learningPageManageModel.isAnimationEnabled = true;
+          learningPageManageModel.playSound(sectionDataModelList.toList().reversed.toList()[learningPageManageModel.currentIndex], AppLocalizations.of(context).locale.languageCode);
+          await playScaleAnimation();
+          learningPageManageModel.isAnimationEnabled = false;
+        }else{
+          learningPageManageModel.stopSound();
+        }
 
       },
       children: sectionDataModelList.map((SectionDataModel sectionDataModel) {
@@ -172,7 +182,11 @@ class LearningCardWidget extends StatelessWidget {
       }).toList(),
     );
   }
-
+  firstPlay(BuildContext context)async{
+    await Future.delayed(Duration(milliseconds: 200));
+    learningPageManageModel.playSound(sectionDataModelList.toList().reversed.toList()[learningPageManageModel.currentIndex], AppLocalizations.of(context).locale.languageCode);
+    playScaleAnimation();
+  }
   playScaleAnimation()async{
     await Future.delayed(Duration(milliseconds: 200));
     learningPageManageModel.imageScale = 1.01;

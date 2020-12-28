@@ -1,22 +1,62 @@
 [
-    {
-      "name":"pear",
-      "isLocal":true,
-      "photo":"assets/sections/fruits/images/pear.jpg",
-      "audio":"sections/fruits/",
-      "languageName":{
-        "tr": "Armut",
-        "en": "Pear"
-      }
-    },
-    {
-      "name":"apple",
-      "isLocal":true,
-      "photo":"assets/sections/fruits/images/apple.jpg",
-      "audio":"sections/fruits/",
-      "languageName":{
-        "tr": "Elma",
-        "en": "Apple"
-      }
+  {
+    "name": "pear",
+    "isLocal": true,
+    "photo": "assets/sections/fruits/images/pear.jpg",
+    "audio": "sections/fruits/",
+    "languageName": {
+      "tr": "Armut",
+      "en": "Pear"
     }
+  },
+  {
+    "name": "apple",
+    "isLocal": true,
+    "photo": "assets/sections/fruits/images/apple.jpg",
+    "audio": "sections/fruits/",
+    "languageName": {
+      "tr": "Elma",
+      "en": "Apple"
+    }
+  },
+  {
+    "name": "banana",
+    "isLocal": true,
+    "photo": "assets/sections/fruits/images/banana.jpg",
+    "audio": "sections/fruits/",
+    "languageName": {
+      "tr": "Muz",
+      "en": "Banana"
+    }
+  },
+  {
+    "name": "watermelon",
+    "isLocal": true,
+    "photo": "assets/sections/fruits/images/watermelon.jpg",
+    "audio": "sections/fruits/",
+    "languageName": {
+      "tr": "Karpuz",
+      "en": "Watermelon"
+    }
+  },
+  {
+    "name": "orange",
+    "isLocal": true,
+    "photo": "assets/sections/fruits/images/orange.jpg",
+    "audio": "sections/fruits/",
+    "languageName": {
+      "tr": "Portakal",
+      "en": "Orange"
+    }
+  },
+  {
+    "name": "peach",
+    "isLocal": true,
+    "photo": "assets/sections/fruits/images/peach.jpg",
+    "audio": "sections/fruits/",
+    "languageName": {
+      "tr": "Şeftali",
+      "en": "Peach"
+    }
+  }
 ]

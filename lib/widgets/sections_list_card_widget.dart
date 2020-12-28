@@ -44,7 +44,7 @@ class SectionListCardWidget extends StatelessWidget {
                 builder: (context) => BlocProvider(
                   bloc: LearningPageBloc(),
                   child: ChangeNotifierProvider.value(
-                    value:learningPageManageModel,
+                    value:LearningPageManageModel(),
                     child: LearningPage(),
                   ),
                 ),
