@@ -20,7 +20,7 @@ class SectionListCardWidget extends StatelessWidget {
   LearningPageManageModel learningPageManageModel = LearningPageManageModel();
   @override
   Widget build(BuildContext context) {
-    sectionListCardModel = Provider.of<SectionListCardModel>(context);
+    sectionListCardModel = Provider.of<SectionListCardModel>(context,listen: false);
     return Padding(
       padding: const EdgeInsets.only(top: 16.0),
       child: GestureDetector(
@@ -45,7 +45,7 @@ class SectionListCardWidget extends StatelessWidget {
                   bloc: LearningPageBloc(),
                   child: ChangeNotifierProvider.value(
                     value:LearningPageManageModel(),
-                    child: LearningPage(),
+                    child: LearningPage(sectionListCardModel.sectionIdName),
                   ),
                 ),
               ),

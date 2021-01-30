@@ -38,6 +38,7 @@ dependencies:
   audioplayers: ^0.17.0
   swipe_stack: ^1.0.0
   rxdart: ^0.25.0
+  rive: ^0.6.1
 
   http: ^0.12.2
 
@@ -60,8 +61,16 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/environment/background/
+    - assets/environment/rive/
     - assets/environment/learning_items/
     - assets/environment/section_backgrounds/
+    - assets/environment/common/en/exam/right/
+    - assets/environment/common/de/exam/right/
+    - assets/environment/common/es/exam/right/
+    - assets/environment/common/fr/exam/right/
+    - assets/environment/common/pl/exam/right/
+    - assets/environment/common/ru/exam/right/
+    - assets/environment/common/uk/exam/right/
     - assets/environment/sections_sounds/
     - assets/environment/sound_effect/
     - assets/environment/background_sound/
@@ -73,6 +82,7 @@ flutter:
     - assets/sections/mushrooms/en/names/
     - assets/sections/seasons/en/names/
     - assets/sections/vegetables/en/names/
+    - assets/sections/fruits/en/questions/
     - assets/sections_data/
     - lang/tr.json
     - lang/en.json

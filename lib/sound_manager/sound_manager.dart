@@ -27,6 +27,9 @@ class SoundManager{
   playTap()async{
     player.play('environment/sound_effect/tap.wav',volume: 0.8,);
   }
+  playSuccess()async{
+    player.play('environment/sound_effect/success.wav',volume: 0.8,);
+  }
   playClockTick()async{
     player.play('environment/sound_effect/clock_tac.wav',volume: 0.8,);
   }

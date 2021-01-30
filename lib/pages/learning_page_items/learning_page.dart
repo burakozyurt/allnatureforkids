@@ -6,6 +6,10 @@ import 'package:allnatureforkids/pages/learning_page_items/learning_page_bloc.da
 import 'package:allnatureforkids/pages/learning_page_items/learning_page_manage_model.dart';
 import 'package:allnatureforkids/pages/learning_page_items/learning_page_repository.dart';
 import 'package:allnatureforkids/pages/learning_page_items/swipe_learning_card_items/learning_card_widget.dart';
+import 'package:allnatureforkids/pages/quiz_page_items/quiz_page.dart';
+import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_balloon_manage_model.dart';
+import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_bloc.dart';
+import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_manage_model.dart';
 import 'package:allnatureforkids/shared/bloc/bloc_provider.dart';
 import 'package:allnatureforkids/utils/alet_dialog_widgets.dart';
 import 'package:allnatureforkids/widgets/background.dart';
@@ -20,13 +24,16 @@ class LearningPage extends StatelessWidget {
   LearningPageManageModel learningPageManageModel;
   LearningPageBloc learningPageBloc;
   final GlobalKey<SwipeStackState> _swipeKey = GlobalKey<SwipeStackState>();
+  final String sectionIdName;
+
+  LearningPage(this.sectionIdName);
 
   @override
   Widget build(BuildContext context) {
     mainModel = Provider.of<MainModel>(context);
     learningPageManageModel = Provider.of<LearningPageManageModel>(context, listen: false);
     learningPageBloc = BlocProvider.of<LearningPageBloc>(context);
-    learningPageBloc.fetchAllData('fruit');
+    learningPageBloc.fetchAllData(sectionIdName);
     return Scaffold(
       resizeToAvoidBottomPadding: false,
       body: StreamBuilder(
@@ -86,7 +93,8 @@ class LearningPage extends StatelessWidget {
                     height: MediaQuery.of(context).size.height * 0.7 / 12,
                     right: 16,
                     left: 16,
-                    child: GestureDetector(behavior: HitTestBehavior.translucent,
+                    child: GestureDetector(
+                      behavior: HitTestBehavior.translucent,
                       onTapCancel: () {
                         learningPageManageModel.pressDetailsStartQuiz('CANCEL');
                       },
@@ -94,102 +102,107 @@ class LearningPage extends StatelessWidget {
                         learningPageManageModel.pressDetailsStartQuiz('DOWN');
                       },
                       onTapUp: (details) async {
+                        Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                            pageBuilder: (context, _, __) => ChangeNotifierProvider.value(value:QuizPageBalloonManageModel('0'),child: ChangeNotifierProvider.value(value:QuizPageManageModel(),child: BlocProvider(bloc:QuizPageBloc(),child: QuizPage(sectionIdName)))),
+                            transitionDuration: Duration.zero
+                          ),
+                        );
                         learningPageManageModel.pressDetailsStartQuiz('UP');
                       },
-                      child: Consumer<LearningPageManageModel>(
-                        builder: (context, data,_) {
-                          return Transform.scale(
-                            scale:data.startQuizScale,
-                            child: Center(
-                              child: Container(
-                                width: ScreenUtil().setWidth(183),
-                                child: Stack(
-                                  children: [
-                                    Positioned(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(0.0),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                            borderRadius: BorderRadius.circular(18.0),
-                                            color: Colors.transparent,
-                                            boxShadow: [
-                                              BoxShadow(
-                                                color: Colors.white30,
-                                                blurRadius: 0.2,
-                                                spreadRadius: 0.0,
-                                                offset: Offset(-4.0, -4.0), // shadow direction: bottom right
-                                              ),
-                                              BoxShadow(
-                                                color: Colors.white30,
-                                                blurRadius: 0.2,
-                                                spreadRadius: 0.0,
-                                                offset: Offset(4.0, -4.0), // shadow direction: bottom right
-                                              ),
-                                              BoxShadow(
-                                                color: Colors.white30,
-                                                blurRadius: 0.2,
-                                                spreadRadius: 0.0,
-                                                offset: Offset(4.0, 4.0), // shadow direction: bottom right
-                                              ),
-                                              BoxShadow(
-                                                color: Colors.white30,
-                                                blurRadius: 0.2,
-                                                spreadRadius: 0.0,
-                                                offset: Offset(-4.0, 4.0), // shadow direction: bottom right
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                    Material(
-                                      elevation: 4,
-                                      borderRadius: BorderRadius.all(Radius.circular(18)),
+                      child: Consumer<LearningPageManageModel>(builder: (context, data, _) {
+                        return Transform.scale(
+                          scale: data.startQuizScale,
+                          child: Center(
+                            child: Container(
+                              width: ScreenUtil().setWidth(183),
+                              child: Stack(
+                                children: [
+                                  Positioned(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(0.0),
                                       child: Container(
-                                        width: ScreenUtil().setWidth(183),
                                         decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.all(Radius.circular(18)),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                                          child: Row(
-                                            mainAxisAlignment: MainAxisAlignment.center,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            children: [
-                                              Text(
-                                                AppLocalizations.of(context).translate('start_quiz'),
-                                                style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: ThemeColor.yaziAra,
-                                                  fontSize: ScreenUtil().setSp(
-                                                    18,
-                                                  ),
-                                                ),
-                                              ),
-                                              SizedBox(
-                                                width: 8,
-                                              ),
-                                              Padding(
-                                                padding: const EdgeInsets.only(top: 16, bottom: 16, left: 4),
-                                                child: Image(
-                                                  image: AssetImage('assets/environment/learning_items/play_icon.png'),
-                                                  fit: BoxFit.cover,
-                                                  filterQuality: FilterQuality.low,
-                                                ),
-                                              ),
-                                            ],
-                                          ),
+                                          borderRadius: BorderRadius.circular(18.0),
+                                          color: Colors.transparent,
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color: Colors.white30,
+                                              blurRadius: 0.2,
+                                              spreadRadius: 0.0,
+                                              offset: Offset(-4.0, -4.0), // shadow direction: bottom right
+                                            ),
+                                            BoxShadow(
+                                              color: Colors.white30,
+                                              blurRadius: 0.2,
+                                              spreadRadius: 0.0,
+                                              offset: Offset(4.0, -4.0), // shadow direction: bottom right
+                                            ),
+                                            BoxShadow(
+                                              color: Colors.white30,
+                                              blurRadius: 0.2,
+                                              spreadRadius: 0.0,
+                                              offset: Offset(4.0, 4.0), // shadow direction: bottom right
+                                            ),
+                                            BoxShadow(
+                                              color: Colors.white30,
+                                              blurRadius: 0.2,
+                                              spreadRadius: 0.0,
+                                              offset: Offset(-4.0, 4.0), // shadow direction: bottom right
+                                            )
+                                          ],
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                  Material(
+                                    elevation: 4,
+                                    borderRadius: BorderRadius.all(Radius.circular(18)),
+                                    child: Container(
+                                      width: ScreenUtil().setWidth(183),
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        borderRadius: BorderRadius.all(Radius.circular(18)),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.center,
+                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              AppLocalizations.of(context).translate('start_quiz'),
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                color: ThemeColor.yaziAra,
+                                                fontSize: ScreenUtil().setSp(
+                                                  18,
+                                                ),
+                                              ),
+                                            ),
+                                            SizedBox(
+                                              width: 8,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.only(top: 16, bottom: 16, left: 4),
+                                              child: Image(
+                                                image: AssetImage('assets/environment/learning_items/play_icon.png'),
+                                                fit: BoxFit.cover,
+                                                filterQuality: FilterQuality.low,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
-                          );
-                        }
-                      ),
+                          ),
+                        );
+                      }),
                     )),
                 Positioned(
                     top: MediaQuery.of(context).size.height * 2 / 12,
@@ -423,18 +436,18 @@ class LearningPage extends StatelessWidget {
                         ),
                         data.currentIndex == sectionDataModelList.length
                             ? Container(
-                          width: 119,
-                        )
+                                width: 119,
+                              )
                             : GestureDetector(
-                          behavior: HitTestBehavior.translucent,
-                          onTapCancel: () {
-                            learningPageManageModel.pressDetailsRight('CANCEL');
-                          },
-                          onTapDown: (details) {
-                            learningPageManageModel.pressDetailsRight('DOWN');
-                          },
-                          onTapUp: (details) async {
-                            /* if(learningPageManageModel.currentIndex == sectionDataModelList.length){
+                                behavior: HitTestBehavior.translucent,
+                                onTapCancel: () {
+                                  learningPageManageModel.pressDetailsRight('CANCEL');
+                                },
+                                onTapDown: (details) {
+                                  learningPageManageModel.pressDetailsRight('DOWN');
+                                },
+                                onTapUp: (details) async {
+                                  /* if(learningPageManageModel.currentIndex == sectionDataModelList.length){
                                 await Future.delayed(Duration(milliseconds: 200));
                                 learningPageManageModel.currentIndex = sectionDataModelList.length;
                               }else{
@@ -442,19 +455,19 @@ class LearningPage extends StatelessWidget {
                                 learningPageManageModel.currentIndex++;
                                 await Future.delayed(Duration(milliseconds: 200));
                               }*/
-                            _swipeKey.currentState.swipeRight();
-                            learningPageManageModel.pressDetailsRight('UP');
-                          },
-                          child: Transform.scale(
-                            scale: learningPageManageModel.rightScale,
-                            child: Container(
-                              width: 119,
-                              child: Image(
-                                image: AssetImage('assets/environment/learning_items/right_arrow.png'),
+                                  _swipeKey.currentState.swipeRight();
+                                  learningPageManageModel.pressDetailsRight('UP');
+                                },
+                                child: Transform.scale(
+                                  scale: learningPageManageModel.rightScale,
+                                  child: Container(
+                                    width: 119,
+                                    child: Image(
+                                      image: AssetImage('assets/environment/learning_items/right_arrow.png'),
+                                    ),
+                                  ),
+                                ),
                               ),
-                            ),
-                          ),
-                        ),
                       ],
                     );
                   }),

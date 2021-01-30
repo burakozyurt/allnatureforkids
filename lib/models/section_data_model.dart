@@ -3,16 +3,18 @@ class SectionDataModel {
   bool isLocal;
   String photo;
   String audio;
+  String questionAudio;
   LanguageName languageName;
 
   SectionDataModel(
-      {this.name, this.isLocal, this.photo, this.audio, this.languageName});
+      {this.name, this.isLocal, this.photo, this.audio, this.languageName,this.questionAudio});
 
   SectionDataModel.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     isLocal = json['isLocal'];
     photo = json['photo'];
     audio = json['audio'];
+    questionAudio = json['audio'] == null ? null : json['audio'] ;
     languageName = json['languageName'] != null
         ? new LanguageName.fromJson(json['languageName'])
         : null;
@@ -24,6 +26,7 @@ class SectionDataModel {
     data['isLocal'] = this.isLocal;
     data['photo'] = this.photo;
     data['audio'] = this.audio;
+    data['audio'] = this.questionAudio;
     if (this.languageName != null) {
       data['languageName'] = this.languageName.toJson();
     }
