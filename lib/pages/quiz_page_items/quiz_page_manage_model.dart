@@ -15,6 +15,14 @@ class QuizPageManageModel extends ChangeNotifier{
   String _nameRive = '0';
   String _nextRive = '1';
   bool _onTapped = false;
+  int _period = 0;
+
+  int get period => _period;
+
+  set period(int value) {
+    _period = value;
+    notifyListeners();
+  }
 
   bool get onTapped => _onTapped;
 
@@ -74,17 +82,19 @@ class QuizPageManageModel extends ChangeNotifier{
   resetVariables(){
     wrongAnswerItems.clear();
     notifyListeners();
-    if(correctList.length == defaultList.length){
+    if(correctList.length == 5 && period == 0){
       if(nameRive != '0'){
         playSuccess();
       }
       correctList.clear();
-      _currentQuizDataModel = defaultList[correctList.length];
-      _nextQuizDataModel = defaultList[correctList.length];
-      nameRive = '0';
+      _currentQuizDataModel = defaultList[correctList.length%5];
+      _nextQuizDataModel = defaultList[correctList.length%5];
+      period = 1;
+    }else if(correctList.length == 4 && period == 1){
+
     }else{
-      _currentQuizDataModel = defaultList[correctList.length];
-      _nextQuizDataModel = defaultList[correctList.length];
+      _currentQuizDataModel = defaultList[correctList.length%5];
+      _nextQuizDataModel = defaultList[correctList.length%5];
       nameRive = correctList.length.toString();
       if(correctList.length == defaultList.length){
         nameRive = (defaultList.length + 1).toString();

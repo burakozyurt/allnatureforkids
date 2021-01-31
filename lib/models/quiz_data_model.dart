@@ -9,7 +9,7 @@ class QuizDataModel{
     optionList.shuffle();
     optionList.shuffle();
     optionList.shuffle();
-    int random = Random().nextInt(3);
+    int random = Random().nextInt(4);
     _answer = optionList[random];
   }
 

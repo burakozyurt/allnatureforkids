@@ -8,6 +8,7 @@ import 'package:allnatureforkids/pages/learning_page_items/learning_page_reposit
 import 'package:allnatureforkids/pages/learning_page_items/swipe_learning_card_items/learning_card_widget.dart';
 import 'package:allnatureforkids/pages/quiz_page_items/quiz_page.dart';
 import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_balloon_manage_model.dart';
+import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_big_balloon_manage_model.dart';
 import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_bloc.dart';
 import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_manage_model.dart';
 import 'package:allnatureforkids/shared/bloc/bloc_provider.dart';
@@ -105,7 +106,7 @@ class LearningPage extends StatelessWidget {
                         Navigator.push(
                           context,
                           PageRouteBuilder(
-                            pageBuilder: (context, _, __) => ChangeNotifierProvider.value(value:QuizPageBalloonManageModel('0'),child: ChangeNotifierProvider.value(value:QuizPageManageModel(),child: BlocProvider(bloc:QuizPageBloc(),child: QuizPage(sectionIdName)))),
+                            pageBuilder: (context, _, __) => ChangeNotifierProvider.value(value:QuizPageBigBalloonManageModel('0'),child: ChangeNotifierProvider.value(value:QuizPageBalloonManageModel('0'),child: ChangeNotifierProvider.value(value:QuizPageManageModel(),child: BlocProvider(bloc:QuizPageBloc(),child: QuizPage(sectionIdName))))),
                             transitionDuration: Duration.zero
                           ),
                         );

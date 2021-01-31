@@ -1,0 +1,147 @@
+[
+  {
+    "name": "cabbage",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/cabbage.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Lahana",
+      "en": "Cabbage"
+    }
+  },
+  {
+    "name": "carrot",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/carrot.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Havuç",
+      "en": "Carrot"
+    }
+  },
+  {
+    "name": "corn",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/corn.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Mısır",
+      "en": "Corn"
+    }
+  },
+  {
+    "name": "cucumber",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/cucumber.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Salatalık",
+      "en": "Cucumber"
+    }
+  },
+  {
+    "name": "eggplant",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/eggplant.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Patlıcan",
+      "en": "Eggplant"
+    }
+  },
+  {
+    "name": "garlic",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/garlic.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Sarımsak",
+      "en": "Garlic"
+    }
+  },
+  {
+    "name": "leek",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/leek.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Pırasa",
+      "en": "Leek"
+    }},
+  {
+    "name": "onion",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/onion.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Soğan",
+      "en": "Onion"
+    }},
+  {
+    "name": "parsley",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/parsley.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Maydonoz",
+      "en": "Parsley"
+    }},
+  {
+    "name": "potato",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/potato.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Patates",
+      "en": "Potato"
+    }},
+  {
+    "name": "pea",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/pea.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Bezelye",
+      "en": "Pea"
+    }},
+  {
+    "name": "pepper",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/pepper.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Biber",
+      "en": "Pepper"
+    }},
+  {
+    "name": "pumpkin",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/pumpkin.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Kabak",
+      "en": "Pumpkin"
+    }
+  },
+  {
+    "name": "radish",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/radish.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Turp",
+      "en": "Radish"
+    }
+  },
+  {
+    "name": "tomato",
+    "isLocal": true,
+    "photo": "assets/sections/vegetables/images/tomato.jpg",
+    "audio": "sections/vegetables/",
+    "languageName": {
+      "tr": "Domates",
+      "en": "Tomato"
+    }
+  }
+  
+]

@@ -62,6 +62,7 @@ flutter:
   assets:
     - assets/environment/background/
     - assets/environment/rive/
+    - assets/environment/rive/bomb/
     - assets/environment/learning_items/
     - assets/environment/section_backgrounds/
     - assets/environment/common/en/exam/right/

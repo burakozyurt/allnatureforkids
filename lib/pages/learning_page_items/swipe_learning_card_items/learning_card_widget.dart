@@ -23,7 +23,7 @@ class LearningCardWidget extends StatelessWidget {
       stackFrom: StackFrom.Right,
       translationInterval: 4,
       scaleInterval: 0.04,
-      visibleCount: sectionDataModelList.length,
+      visibleCount: 3,
       historyCount: sectionDataModelList.length,
       onEnd: () {
         learningPageManageModel.currentIndex = sectionDataModelList.length;

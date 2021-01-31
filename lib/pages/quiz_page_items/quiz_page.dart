@@ -5,6 +5,8 @@ import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_balloon_manage_
 import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_bloc.dart';
 import 'package:allnatureforkids/pages/quiz_page_items/quiz_page_manage_model.dart';
 import 'package:allnatureforkids/pages/quiz_page_items/rive_balloon.dart';
+import 'package:allnatureforkids/pages/quiz_page_items/rive_big_balloon.dart';
+import 'package:allnatureforkids/pages/quiz_page_items/rive_bomb_items/rive_bomb_game_screen.dart';
 import 'package:allnatureforkids/shared/bloc/bloc_provider.dart';
 import 'package:allnatureforkids/widgets/background.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +26,7 @@ class QuizPage extends StatelessWidget {
     quizPageBloc = BlocProvider.of<QuizPageBloc>(context);
     quizPageManageModel = Provider.of<QuizPageManageModel>(context,listen: false);
     quizPageBalloonManageModel = Provider.of<QuizPageBalloonManageModel>(context,listen: false);
-    quizPageBloc.fetchAllData(sectionName,length: 5);
+    quizPageBloc.fetchAllData(sectionName,length: 10);
     return Scaffold(
       resizeToAvoidBottomInset: false,
       body: StreamBuilder(
@@ -49,6 +51,16 @@ class QuizPage extends StatelessWidget {
           return Stack(
             children: [
               Positioned.fill(child: BackgroundWidget()),
+              Positioned(
+                  top: 0,
+                  right: 16,
+                  left: 16,
+                  height: MediaQuery.of(context).size.height * 2 / 12,
+                  child: Stack(
+                    children: [
+                    Positioned.fill(child: ChangeNotifierProvider.value(value:quizPageManageModel,child: RiveBigBalloon())),
+                    ],
+                  )),
               Positioned(
                   top: 0,
                   height: MediaQuery.of(context).size.height * 0.7 / 12,
@@ -140,7 +152,7 @@ class QuizPage extends StatelessWidget {
                           padding: const EdgeInsets.only(left: 8.0, right: 8.0, top: 16, bottom: 16),
                           child: ListView(
                             children: [
-                              Text('Selam'),
+                              Text(''),
                             ],
                           ),
                         ),
@@ -185,6 +197,7 @@ class QuizPage extends StatelessWidget {
                   child: ChangeNotifierProvider.value(value:quizPageBalloonManageModel,child: ChangeNotifierProvider.value(value: quizPageManageModel,child: QuizCardWidget(),)),
                 ),
               ),
+              RiveBombGame()
 
             ],
           );
