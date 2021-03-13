@@ -4,6 +4,7 @@ import 'package:allnatureforkids/main_repository.dart';
 import 'package:allnatureforkids/models/section_data_model.dart';
 import 'package:allnatureforkids/pages/home_page_items/home_page_manage_model.dart';
 import 'package:allnatureforkids/pages/learning_page_items/learning_page_repository.dart';
+import 'package:allnatureforkids/pages/quiz_page_items/rive_bomb_items/rive_bomb_game_screen.dart';
 import 'file:///C:/dev/allnatureforkids/allnatureforkids/lib/pages/home_page_items/home_page.dart';
 import 'package:allnatureforkids/sound_manager/sound_manager.dart';
 import 'package:flutter/material.dart';
@@ -117,6 +118,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             },
 
             home: ChangeNotifierProvider.value(value:homePageManageModel,child: new HomePage()),
+           // home: RiveGameInitial(),
           );
         }
       ),

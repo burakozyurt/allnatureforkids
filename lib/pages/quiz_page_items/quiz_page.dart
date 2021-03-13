@@ -51,6 +51,7 @@ class QuizPage extends StatelessWidget {
           return Stack(
             children: [
               Positioned.fill(child: BackgroundWidget()),
+              //RiveGameInitial(isBackground: true,),
               Positioned(
                   top: 0,
                   right: 16,
@@ -197,8 +198,16 @@ class QuizPage extends StatelessWidget {
                   child: ChangeNotifierProvider.value(value:quizPageBalloonManageModel,child: ChangeNotifierProvider.value(value: quizPageManageModel,child: QuizCardWidget(),)),
                 ),
               ),
-              RiveBombGame()
-
+              /*RiveBombGame()*/
+              Consumer<QuizPageManageModel>(
+                builder: (context,data,_){
+                  if(data.correctList.length ==1 && data.period == 0){
+                    return RiveGameInitial();
+                  }else{
+                    return Container();
+                  }
+                },
+              )
             ],
           );
         }

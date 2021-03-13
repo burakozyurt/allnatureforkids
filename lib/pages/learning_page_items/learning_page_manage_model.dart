@@ -191,9 +191,9 @@ class LearningPageManageModel extends ChangeNotifier{
   }
 
   playSound(SectionDataModel sectionDataModel,String languageCode){
-    SoundManager().playItemLocal(sectionDataModel.audio+languageCode+'/names/${sectionDataModel.name}.wav');
+    getIt.get<SoundManager>().playItemLocal(sectionDataModel.audio+languageCode+'/names/${sectionDataModel.name}.wav');
   }
   stopSound(){
-    SoundManager().stopItemLocal();
+    getIt.get<SoundManager>().stopItemLocal();
   }
 }

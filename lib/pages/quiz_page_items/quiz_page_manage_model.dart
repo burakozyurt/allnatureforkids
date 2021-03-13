@@ -1,3 +1,4 @@
+import 'package:allnatureforkids/locator.dart';
 import 'package:allnatureforkids/models/quiz_data_model.dart';
 import 'package:allnatureforkids/models/section_data_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -109,19 +110,19 @@ class QuizPageManageModel extends ChangeNotifier{
   }
 
   playSound(SectionDataModel sectionDataModel,String languageCode){
-    SoundManager().playItemLocal(sectionDataModel.audio+languageCode+'/names/${sectionDataModel.name}.wav');
+    getIt.get<SoundManager>().playItemLocal(sectionDataModel.audio+languageCode+'/names/${sectionDataModel.name}.wav',);
   }
   playCommon(String languageCode){
-    SoundManager().playItemLocal('environment/common/'+languageCode+'/exam/right/Brilliant.wav');
+    getIt.get<SoundManager>().playItemLocal('environment/common/'+languageCode+'/exam/right/Brilliant.wav');
   }
   playWrong(String languageCode){
-    SoundManager().playItemLocal('environment/sound_effect/sound_wrong.wav');
+    getIt.get<SoundManager>().playItemLocal('environment/sound_effect/sound_wrong.wav');
   }
 
   playSuccess(){
-    SoundManager().playSuccess();
+    getIt.get<SoundManager>().playSuccess();
   }
   playQuestion(SectionDataModel sectionDataModel,String languageCode){
-    SoundManager().playItemLocal(sectionDataModel.questionAudio+languageCode+'/questions/${sectionDataModel.name}.wav');
+    getIt.get<SoundManager>().playItemLocal(sectionDataModel.questionAudio+languageCode+'/questions/${sectionDataModel.name}.wav');
   }
 }

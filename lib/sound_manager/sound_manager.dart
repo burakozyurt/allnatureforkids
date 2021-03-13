@@ -20,21 +20,41 @@ class SoundManager{
     //int result = await audioPlayer.play(localPath, isLocal: true);
     await Future.delayed(Duration(milliseconds: 500));
     itemPlayer.stop();
+    itemPlayerBackground.clearCache();
     itemPlayerBackground.load(path);
-    itemPlayer = await itemPlayerBackground.play(path,volume: 0.8,);
+    itemPlayer = await itemPlayerBackground.play(path,volume: 0.8,mode: PlayerMode.MEDIA_PLAYER);
   }
 
   playTap()async{
+    if(player.loadedFiles.length > 10){
+      player.clearCache();
+    }
     player.play('environment/sound_effect/tap.wav',volume: 0.8,);
   }
+
+  clearCache(){
+    if(player.loadedFiles.length > 1){
+      player.clearCache();
+    }
+  }
+
+  playBalloonPopping()async{
+    clearCache();
+    player.play('environment/sound_effect/balloon_popping.wav',volume: 0.8,mode: PlayerMode.LOW_LATENCY);
+  }
   playSuccess()async{
-    player.play('environment/sound_effect/success.wav',volume: 0.8,);
+    clearCache();
+    player.play('environment/sound_effect/success.wav',volume: 0.8,mode: PlayerMode.LOW_LATENCY);
   }
   playClockTick()async{
-    player.play('environment/sound_effect/clock_tac.wav',volume: 0.8,);
+    clearCache();
+
+    player.play('environment/sound_effect/clock_tac.wav',volume: 0.8,mode: PlayerMode.LOW_LATENCY);
   }
   playSectionName(String sectionId)async{
-    player.play('sections/$sectionId/en/names/$sectionId.wav',volume: 0.8,);
+    clearCache();
+
+    player.play('sections/$sectionId/en/names/$sectionId.wav',volume: 0.8,mode: PlayerMode.LOW_LATENCY);
   }
 
   playBackground()async{
